@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2022 at 08:44 AM
+-- Generation Time: Nov 02, 2022 at 04:09 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -79,19 +79,18 @@ CREATE TABLE `penjualan` (
   `jumlah` int(11) NOT NULL,
   `total` bigint(20) NOT NULL,
   `produk` varchar(150) NOT NULL,
-  `alamat` varchar(255) NOT NULL
+  `size` varchar(5) NOT NULL,
+  `alamat` varchar(255) NOT NULL,
+  `status` enum('baru','proses','selesai') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `penjualan`
 --
 
-INSERT INTO `penjualan` (`idpenjualan`, `time`, `nama`, `jumlah`, `total`, `produk`, `alamat`) VALUES
-(1002, '2022-10-02 10:45:59pm', 'Inner Journey Tazkie Ciputra', 2, 96000, 'Nivea', 'Jakarta Selatan'),
-(1003, '2022-10-02 05:45:59pm', 'Naufal Aulia Huda', 3, 150000, 'Dairy Milk', 'Jakarta Barat'),
-(1004, '2022-10-02 10:48:13pm', 'Muhammad Hilmi Musyaffa', 10, 20000, 'Permen', 'Pasar Minggu'),
-(1005, '2022-10-03 11:15:57am', 'tazkie', 10, 120000, 'SASa', 'Jakarta selatan'),
-(1006, '2022-10-03 12:12:03pm', 'raffi', 2, 96000, 'Nivea', 'jalan sman');
+INSERT INTO `penjualan` (`idpenjualan`, `time`, `nama`, `jumlah`, `total`, `produk`, `size`, `alamat`, `status`) VALUES
+(1013, '2022-11-01 10:16:07pm', 'Inner Journey Tazkie Ciputra Tangguh', 4, 1960000, 'Hoodie - Yellow Pastel', 'L', 'Jl. Tebet timur dalam III B no. 30 rt/07 rw/04, Jakarta Selatan, Indonesia.', 'baru'),
+(1014, '2022-11-02 09:21:11am', 'Muhammad Hilmi Musyaffa', 3, 1470000, 'Hoodie - Yellow Pastel', 'L', 'Jl. Tebet timur dalam III B no. 30 rt/07 rw/04, Jakarta Selatan, Indonesia.', 'baru');
 
 -- --------------------------------------------------------
 
@@ -103,22 +102,33 @@ CREATE TABLE `produk` (
   `id_barang` int(11) NOT NULL,
   `namaproduk` varchar(150) NOT NULL,
   `stok` int(11) NOT NULL,
-  `desbarang` text DEFAULT NULL,
+  `color` text DEFAULT NULL,
   `harga` int(11) NOT NULL,
-  `foto` varchar(150) NOT NULL
+  `foto` varchar(150) NOT NULL,
+  `gender` enum('men','women') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `produk`
 --
 
-INSERT INTO `produk` (`id_barang`, `namaproduk`, `stok`, `desbarang`, `harga`, `foto`) VALUES
-(1, 'Facial Wash', 60, 'Ini aalah kue', 44900, '_1664411261VALORANT   2022-09-09 20-36-13_Moment.jpg.png'),
-(3, 'Nivea', 115, 'Ini Nivea\r\n', 48000, '_1664343232Valorant Chill video.png'),
-(6, 'Dairy Milk', 37, 'Ini coklat enak hahaha\r\n', 50000, '_1664343302VL3Valorant_Moment.jpg'),
-(9, 'M&M', 29, 'Ini coklat enak', 15000, '_1664343232Valorant Chill video.png'),
-(10, 'Permen', 190, 'Ini apa ya', 2000, '_1664769174World Smallest Violin.jpg'),
-(13, 'SASa', 26, 'Ini sasa', 12000, '_1664770511Valorant Chill video.png');
+INSERT INTO `produk` (`id_barang`, `namaproduk`, `stok`, `color`, `harga`, `foto`, `gender`) VALUES
+(3, 'Leather Jacket - Black', 115, 'Color: Black', 688000, '_1666508522pria1_.jpg', 'men'),
+(6, 'Hoodie - Yellow Pastel', 29, 'Color: Yellow Pastel', 490000, '_1666509863pria3_.jpg', 'men'),
+(9, 'Teddy Ritzhoodie', 29, 'Warm Hoodie', 695000, '_1666509296Perempuan_.jpg', 'women'),
+(10, 'Sweater Pullover', 80, 'Color Purple', 289000, '_1666509824Perempuan1_.jpg', 'women'),
+(13, 'Oversize Shacked', 26, 'Color: Blue and Black', 349000, '_1666509803Perempuan4_.jpg', 'women'),
+(14, 'Flare Jeans', 4, 'Color: Black\r\nLeather Jeans', 879000, '_1666513005Perempuan3_.jpg', 'women'),
+(15, 'Wool Blend Trousers', 14, 'Wool trousers', 499000, '_1666513398pria6_.jpg', 'men'),
+(16, 'Warm Hoodie - Black', 20, 'Color: Black', 499000, '_1666530859pria4_.jpg', 'men'),
+(17, 'Relaxed Wool Blend Trousers', 14, 'Blend Wool Trousers\r\nColor: Dark Yellow', 499000, '_1666531296pria5_.jpg', 'men'),
+(18, 'Oxford Slim Fit Shirt', 34, 'Color: Blue Sky', 179000, '_1666531447pria2_.jpg', 'men'),
+(19, 'Double Breasted Blazer', 9, 'Color: Black', 779000, '_1666531609Perempuan6_.jpg', 'women'),
+(20, 'Essentials The Blazer', 7, 'Color: Navy Blue', 1179000, '_1666531782pria_.jpg', 'men'),
+(21, 'Canvas Cargo Trousers', 18, 'Color: Like Khaki Green', 449000, '_1666531909Perempuan2_.jpg', 'women'),
+(22, 'High-waisted Trousers', 19, 'Color: Navy', 779000, '_1666532012Perempuan5_.jpg', 'women'),
+(23, 'Hoodie Black/Chicago', 9, 'Color: Black/Chicago', 649000, '_1666532607Perempuan7_.jpg', 'women'),
+(24, 'Jacket Slim Fit', 4, 'Color: Steel Blue', 1279000, '_1666532667pria7_.jpg', 'men');
 
 --
 -- Indexes for dumped tables
@@ -169,13 +179,13 @@ ALTER TABLE `datadiri`
 -- AUTO_INCREMENT for table `penjualan`
 --
 ALTER TABLE `penjualan`
-  MODIFY `idpenjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1007;
+  MODIFY `idpenjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1015;
 
 --
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
