@@ -25,10 +25,10 @@
                         <a class="nav-link text-muted" aria-current="page" href="halaman_admin.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-muted" href="produk_list.php">Produk</a>
+                        <a class="nav-link active text-light" href="produk_list.php">Produk</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active text-light" href="transaksi.php">Transaksi</a>
+                        <a class="nav-link text-muted" href="transaksi.php">Transaksi</a>
                     </li>
 
                 </ul>
@@ -46,41 +46,42 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center mt-5">
-                    <h1>Daftar Transaksi</h1>
+                    <h1>Daftar Produk</h1>
                 </div>
+                <div class="col-6 mb-4"><a href="produk-tambah.php" class="btn btn-primary">Tambah
+                        Barang</a> </div>
                 <div class="col-12 border border p-2"> <?php include "koneksi.php"; ?>
                     <br>
                     <table class="table table-responsive text-center">
                         <thead>
                             <tr class="d-flex">
                                 <th class="col-1">No</th>
-                                <th class="col-1">Time</th>
-                                <th class="col-2">Nama</th>
-                                <th class="col-2">Alamat</th>
-                                <th class="col-1">Total</th>
-                                <th class="col-1">Produk</th>
-                                <th class="col-1">Size</th>
-                                <th class="col-1">Status</th>
+                                <th class="col-2">Nama Barang</th>
+                                <th class="col-1">Stok</th>
+                                <th class="col-2">Deskripsi Barang</th>
+                                <th class="col-2">Harga</th>
+                                <th class="col-2">Foto</th>
                                 <th class="col-2">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                        <?php
-                        $sql = "SELECT * FROM penjualan";
+                            <?php
+                        $sql = "SELECT * FROM produk";
                         $query = mysqli_query($conn, $sql);
                         $no = 1;
-                        while ($transaksi = mysqli_fetch_array($query)) {
+                        while ($produk = mysqli_fetch_array($query)) {
                             echo '<tr class="d-flex">';
                             echo "<td class='col-1'>" . "$no" . "</td>";
-                            echo "<td class='col-1'>" . $transaksi['time'] . "</td>";
-                            echo "<td class='col-2'>" . $transaksi['nama'] . "</td>";
-                            echo "<td class='col-2'>" . $transaksi['alamat'] . "</td>";
-                            echo "<td class='col-1'>" . "Rp " , $transaksi['total'] , ",00". "</td>";
-                            echo "<td class='col-1'>" . $transaksi['produk'] . "</td>";
-                            echo "<td class='col-1'>" . $transaksi['size'] . "</td>";
-                            echo "<td class='col-1'>" . $transaksi['status'] . "</td>";
-                            echo "<td class='col-2'><a href='transaksi-pr.php?id=" . $transaksi['idpenjualan'] . "'class='btn btn-success'>Edit</a> ";
-                            echo "<a href='produk-hapus.php?idtrans=" . $transaksi['idpenjualan'] . "'class='btn btn-danger'>Hapus</a> ";
+                            echo "<td class='col-2'>" . $produk['namaproduk'] . "</td>";
+                            echo "<td class='col-1'>" . $produk['stok'] . "</td>";
+                            echo "<td class='col-2'>" . $produk['color'] . "</td>";
+                            echo "<td class='col-2'>" . "Rp " , $produk['harga'] , ",00". "</td>";?>
+                            <td class='col-2'>
+                                <?php echo "<img src='../fotoproduk/$produk[foto]' width='100' height='150' />";?>
+                            </td>
+                            <?php
+                            echo "<td class='col-2'><a href='produk-edit.php?id=" . $produk['id_barang'] . "'class='btn btn-success'>Edit</a> ";
+                            echo "<a href='produk-hapus.php?id=" . $produk['id_barang'] . "'class='btn btn-danger'>Hapus</a> ";
                             echo "</td>";
                             $no++;
                         }

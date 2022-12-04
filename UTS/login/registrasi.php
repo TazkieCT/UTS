@@ -35,11 +35,12 @@
         font-size: 4rem;
         font-weight: 300;
         font-family: 'Pacifico', cursive;
+        margin-bottom: 7%;
     }
 
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-image: url(https://i.pinimg.com/originals/43/d6/d8/43d6d8fdedcc0c95f70f2012232d3e4d.jpg);
+        background-image: url(https://cache.desktopnexus.com/cropped-wallpapers/898/898023-1536x864-[DesktopNexus.com].jpg?st=X5Tzj8cDP-MZlrePJxFgqw&e=1666542050);
     }
 
     h1 {
@@ -59,26 +60,22 @@
                         alt="">
                 </div>
                 <div class="col-lg-7 text-center py-5s">
-                    <h1>Welcome back!</h1>
-                    <form action="login-pr.php" method="POST">
-                        <div class="col-sm-15">
-                            <div class="mb-5">
-                                <?php
-                                    if(isset($_GET['pesan'])){
-                                        if($_GET['pesan']=="gagal"){
-                                            echo "<div class='col-10 alert alert-danger'>Username atau Password tidak sesuai !</div>";
-                                        }
-                                    }
-                                    ?>
+                    <h1>Make Your Account!</h1>
+                    <form action="regis-pr.php" method="POST">
+                        <div class="col-sm-10">
+                            <div class="mb-3">
                             </div>
-                            <div class="col-10 mb-3 mt-5">
-                                <input type="text" name="username" class="form-control" placeholder="Username/Email">
+                            <div class="mb-3">
+                                <input type="text" name="username" class="form-control" placeholder="Username">
                             </div>
-                            <div class="col-10 mb-3">
+                            <div class="mb-3">
+                                <input type="email" name="email" class="form-control" placeholder="Email">
+                            </div>
+                            <div class="mb-3">
                                 <input type="password" name="password" class="form-control" placeholder="Password">
-                                <div class="form-text">Belum punya akun? <a href="registrasi.php">Sign up</a></div>
-                                <button type="submit" class="col-5 btn btn-primary my-3">Masuk</button>
+                                <div class="form-text text-dark text-start">Sudah punya akun? <a href="halaman.php">Log in</a></div>
                             </div>
+                            <button type="submit" class="btn btn-primary col-5">Sign Up</button>
                         </div>
                     </form>
                 </div>

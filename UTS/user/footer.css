@@ -1,0 +1,23 @@
+footer{
+    background-color: #e8e4e4;
+    text-align: center;
+    padding: 30px 20px;
+    color: #222222;
+    font-weight: 500;
+}
+
+p{
+    text-justify: inter-character;
+}
+
+#closing{
+    margin-top: 7vh;
+}
+
+#more {
+    display: none;
+}
+
+#desk {
+    margin-bottom: 5vh;
+}
